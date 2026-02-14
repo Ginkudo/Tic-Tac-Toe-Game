@@ -1,7 +1,27 @@
 from tkinter import *
 import random
 
-def next_turn():
+def next_turn(row, column):
+    global player
+    if buttons[row][column]['text'] == "" and check_winner() is False:
+        if player == players[0]: #if the current player is "X"
+            buttons[row][column]['text'] = "X" #set the text of the button to "X"
+            if check_winner() is False: #check if there is a winner after the move
+                player = players[1] #switch to the other player
+                Label.config(text=players[1] + " turn") #update the label to show the current player's turn
+            elif check_winner() is True: #if there is a winner
+                Label.config(text=players[0] + " wins!") #update the label to show that "X" wins
+            elif empty_spaces() is False: #if there are no empty spaces left and no winner, it's a tie
+                Label.config(text="It's a tie!") #update the label to show that it's a tie
+        else: #if the current player is "O"
+            buttons[row][column]['text'] = "O" #set the text of the button to "O"
+            if check_winner() is False: #check if there is a winner after the move
+                player = players[0] #switch to the other player
+                Label.config(text=players[0] + " turn") #update the label to show the current player's turn
+            elif check_winner() is True: #if there is a winner
+                Label.config(text=players[1] + " wins!") #update the label to show that "O" wins
+            elif empty_spaces() is False: #if there are no empty spaces left and no winner, it's a tie
+                Label.config(text="It's a tie!") #update the label to show that it's a tie
     pass
 
 def check_winner():
