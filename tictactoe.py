@@ -25,6 +25,20 @@ def next_turn(row, column):
     pass
 
 def check_winner():
+    for row in range(3):
+        if buttons[row][0]['text'] == buttons[row][1]['text'] == buttons[row][2]['text'] != "":
+            return True
+    for column in range(3):
+        if buttons[0][column]['text'] == buttons[1][column]['text'] == buttons[2][column]['text'] != "":
+            return True
+    if buttons[0][0]['text'] == buttons[1][1]['text'] == buttons[2][2]['text'] != "":
+        return True
+    elif buttons[0][2]['text'] == buttons[1][1]['text'] == buttons[2][0]['text'] != "":
+        return True
+    elif empty_spaces() is False:
+        return "Tie"
+    else:
+        return False
     pass
 
 def empty_spaces():
