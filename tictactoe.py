@@ -24,7 +24,7 @@ def next_turn(row, column):
                 Label.config(text="It's a tie!") #update the label to show that it's a tie
     pass
 
-def check_winner():
+def check_winner(): #check if there is a winner by checking all rows, columns, and diagonals for three of the same symbol (either "X" or "O") that are not empty
     for row in range(3):
         if buttons[row][0]['text'] == buttons[row][1]['text'] == buttons[row][2]['text'] != "":
             return True
@@ -41,7 +41,16 @@ def check_winner():
         return False
     pass
 
-def empty_spaces():
+def empty_spaces(): #check if there are any empty spaces left on the board by counting the number of buttons that have an empty text value. If there are no empty spaces left, return False, otherwise return True.
+    spaces = 9
+    for row in range(3):
+        for column in range(3):
+            if buttons[row][column]['text'] != "":
+                spaces -= 1
+    if spaces == 0:
+        return False
+    else:
+        return True
     pass
 
 def new_game():
