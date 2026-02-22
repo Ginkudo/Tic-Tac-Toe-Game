@@ -54,6 +54,12 @@ def empty_spaces(): #check if there are any empty spaces left on the board by co
     pass
 
 def new_game():
+    global player
+    player = random.choice(players) #randomly select a player to start the new game
+    for row in range(3):
+        for column in range(3):
+            buttons[row][column].config(text="") #reset all buttons to empty text
+    Label.config(text=player + " turn") #update the label to show the current player's turn
     pass
 
 window = Tk() #window is the main application window
